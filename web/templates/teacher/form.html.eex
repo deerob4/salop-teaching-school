@@ -1,0 +1,53 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :title, class: "control-label" %>
+    <%= text_input f, :title, class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :first_name, class: "control-label" %>
+    <%= text_input f, :first_name, class: "form-control" %>
+    <%= error_tag f, :first_name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :last_name, class: "control-label" %>
+    <%= text_input f, :last_name, class: "form-control" %>
+    <%= error_tag f, :last_name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :email, class: "control-label" %>
+    <%= email_input f, :email, class: "form-control" %>
+    <%= error_tag f, :email %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :school_type, class: "control-label" %>
+    <%= text_input f, :school_type, class: "form-control" %>
+    <%= error_tag f, :school_type %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :subject, class: "control-label" %>
+    <%= text_input f, :subject, class: "form-control" %>
+    <%= error_tag f, :subject %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :additional_contact, class: "control-label" %>
+    <%= text_input f, :additional_contact, class: "form-control" %>
+    <%= error_tag f, :additional_contact %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -16,11 +16,10 @@ defmodule TeachingSchool.Router do
   scope "/", TeachingSchool do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", TeacherController, :new
+    post "/", TeacherController, :create
+    get "/teachers", TeacherController, :index
+    post "/teachers", TeacherController, :update
+    delete "/teachers", TeacherController, :delete
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", TeachingSchool do
-  #   pipe_through :api
-  # end
 end
