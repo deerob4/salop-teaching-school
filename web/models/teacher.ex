@@ -19,17 +19,22 @@ defmodule TeachingSchool.Teacher do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :first_name, :last_name, :email, :school_type, :subject, :additional_contact, :confirmed])
+    |> cast(params, [:title, :first_name, :last_name, :email, :school_type, :additional_contact, :confirmed])
     |> validate_required([:title, :first_name, :last_name, :email, :school_type])
-    |> validate_subject_required?
+    |> subject_required?(params)
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
   end
 
-  defp validate_subject_required?(changeset) do
+  defp subject_required?(changeset, params) do
     case get_field(changeset, :school_type) do
-      "primary" -> changeset
-      _ -> validate_required(changeset, :subject, message: "can't be blank if teaching secondary")
+      "primary" ->
+        changeset
+
+      other ->
+        changeset
+        |> cast(params, [:subject])
+        |> validate_required(:subject, message: "can't be blank if teaching secondary")
     end
   end
 end
