@@ -1,6 +1,17 @@
-<h2>New teacher</h2>
+<div class="ui container">
+  <div class="ui segment signup">
+    <div class="ui small image logo">
+      <img src="<%= static_path(@conn, "/images/logo.png") %>" alt="">
+    </div>
 
-<%= render "form.html", changeset: @changeset,
-                        action: teacher_path(@conn, :create) %>
+    <h1 class="heading">Teacher Sign Up Form</h1>
+    <p>Fill in the form below and press submit.
+    Required fields are marked with an asterix.</p>
 
-<%= link "Back", to: teacher_path(@conn, :index) %>
+    <%= render "form.html", changeset: @changeset,
+                            conn: @conn,
+                            success_message: get_flash(@conn, :info),
+                            action: teacher_path(@conn, :create) %>
+  </div>
+</div>
+

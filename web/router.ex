@@ -21,5 +21,9 @@ defmodule TeachingSchool.Router do
     get "/teachers", TeacherController, :index
     post "/teachers", TeacherController, :update
     delete "/teachers", TeacherController, :delete
+
+    get "/csv", CsvController, :export
+    get "/subjects", SubjectController, :index
+    post "/subjects", SubjectController, :update
   end
 end

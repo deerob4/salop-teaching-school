@@ -8,8 +8,6 @@ defmodule TeachingSchool.PageTitle do
   @suffix "Shropshire Teaching Alliance"
 
   def page_title(assigns) do
-    IO.inspect assigns.view_module
-
     assigns
     |> get_title
     |> put_suffix

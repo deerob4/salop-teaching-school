@@ -1,53 +1,71 @@
-<%= form_for @changeset, @action, fn f -> %>
+<%= form_for @changeset, @action, [class: "ui form"], fn f -> %>
   <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+    <div class="ui negative message">
+      <i class="close icon"></i>
+      <div class="header">
+        There were some errors with your entry
+      </div>
+      <ul class="list">
+        <%= error_tag f, :title %>
+        <%= error_tag f, :first_name %>
+        <%= error_tag f, :last_name %>
+        <%= error_tag f, :email %>
+        <%= error_tag f, :school_type %>
+        <%= error_tag f, :subject %>
+        <%= error_tag f, :additional_contact %>
+      </ul>
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= label f, :title, class: "control-label" %>
-    <%= text_input f, :title, class: "form-control" %>
-    <%= error_tag f, :title %>
+  <%= if @success_message do %>
+    <div class="ui positive message">
+      <i class="close icon"></i>
+      <%= @success_message %>
+    </div>
+  <%= end %>
+
+  <div class="required field">
+    <%= label f, :title %>
+    <%= select f, :title, ["Mr", "Mrs", "Miss", "Ms", "Dr"], class: "ui dropdown" %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :first_name, class: "control-label" %>
-    <%= text_input f, :first_name, class: "form-control" %>
-    <%= error_tag f, :first_name %>
+  <div class="two fields">
+    <div class="required field">
+      <%= label f, :first_name %>
+      <%= text_input f, :first_name, placeholder: "John" %>
+    </div>
+
+    <div class="required field">
+      <%= label f, :last_name %>
+      <%= text_input f, :last_name, placeholder: "Smith" %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= label f, :last_name, class: "control-label" %>
-    <%= text_input f, :last_name, class: "form-control" %>
-    <%= error_tag f, :last_name %>
+  <div class="two fields">
+    <div class="required field">
+      <label for="teacher_email">Email address</label>
+      <%= email_input f, :email, placeholder: "johnsmith@gmail.com" %>
+    </div>
+
+    <div class="field">
+      <%= label f, :additional_contact %>
+      <%= text_input f, :additional_contact, placeholder: "01743 123456" %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= email_input f, :email, class: "form-control" %>
-    <%= error_tag f, :email %>
+  <div class="required field">
+    <%= label f, :school_type %>
+    <%= select f, :school_type, school_types, class: "ui dropdown" %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :school_type, class: "control-label" %>
-    <%= text_input f, :school_type, class: "form-control" %>
-    <%= error_tag f, :school_type %>
+  <div class="required field" id="subject_field">
+    <%= label f, :subject %>
+    <%= select f, :subject, subjects, class: "ui dropdown" %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :subject, class: "control-label" %>
-    <%= text_input f, :subject, class: "form-control" %>
-    <%= error_tag f, :subject %>
+  <div class="field">
+    <%= submit "Submit", class: "ui fluid green button" %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :additional_contact, class: "control-label" %>
-    <%= text_input f, :additional_contact, class: "form-control" %>
-    <%= error_tag f, :additional_contact %>
-  </div>
-
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-  </div>
+  <%= link "View saved teachers", to: teacher_path(@conn, :index) %>
 <% end %>

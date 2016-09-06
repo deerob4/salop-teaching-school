@@ -3,7 +3,7 @@ defmodule TeachingSchool.TeacherController do
   alias TeachingSchool.Teacher
 
   def index(conn, _params) do
-    teachers = Repo.all(Teacher)
+    teachers = Teacher.by_latest |> Repo.all
     render(conn, "index.html", teachers: teachers)
   end
 
@@ -18,7 +18,7 @@ defmodule TeachingSchool.TeacherController do
     case Repo.insert(changeset) do
       {:ok, _teacher} ->
         conn
-        |> put_flash(:info, "Teacher created successfully.")
+        |> put_flash(:info, "Teacher added successfully.")
         |> redirect(to: teacher_path(conn, :new))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -30,9 +30,9 @@ defmodule TeachingSchool.TeacherController do
     changeset = Teacher.changeset(teacher, teacher_params)
 
     case Repo.update(changeset) do
-      {:ok, teacher} ->
+      {:ok, _teacher} ->
         conn
-        |> put_flash(:success, "Teacher successfully updated.")
+        |> put_flash(:success, "Teacher successfully confirmed.")
         |> redirect(to: teacher_path(conn, :index))
       {:error, _changeset} ->
         conn
@@ -47,7 +47,7 @@ defmodule TeachingSchool.TeacherController do
     Repo.delete!(teacher)
 
     conn
-    |> put_flash(:info, "Teacher deleted successfully.")
+    |> put_flash(:info, "Teacher successfully deleted.")
     |> redirect(to: teacher_path(conn, :index))
   end
 end

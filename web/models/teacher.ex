@@ -1,5 +1,7 @@
 defmodule TeachingSchool.Teacher do
   use TeachingSchool.Web, :model
+  alias TeachingSchool.Teacher
+  import Ecto.Query
 
   schema "teachers" do
     field :title, :string
@@ -23,7 +25,7 @@ defmodule TeachingSchool.Teacher do
     |> validate_required([:title, :first_name, :last_name, :email, :school_type])
     |> subject_required?(params)
     |> validate_format(:email, ~r/@/)
-    |> unique_constraint(:email)
+    |> unique_constraint(:email, message: "has already been registered")
   end
 
   defp subject_required?(changeset, params) do
@@ -31,10 +33,12 @@ defmodule TeachingSchool.Teacher do
       "primary" ->
         changeset
 
-      other ->
+      _other ->
         changeset
         |> cast(params, [:subject])
         |> validate_required(:subject, message: "can't be blank if teaching secondary")
     end
   end
+
+  def by_latest, do: from(t in Teacher, order_by: t.inserted_at, select: t)
 end
