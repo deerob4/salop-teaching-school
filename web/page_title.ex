@@ -3,7 +3,7 @@ defmodule TeachingSchool.PageTitle do
   Creates page titles for each individual view,
   appending the correct suffix to the end.
   """
-  alias TeachingSchool.{TeacherView}
+  alias TeachingSchool.{TeacherView, SubjectView}
 
   @suffix "Shropshire Teaching Alliance"
 
@@ -21,6 +21,9 @@ defmodule TeachingSchool.PageTitle do
   end
   defp get_title(%{view_module: TeacherView, view_template: "index.html"}) do
     "Teachers"
+  end
+  defp get_title(%{view_module: SubjectView}) do
+    "Update Subjects"
   end
   defp get_title(_), do: nil
 end
