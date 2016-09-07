@@ -1,63 +1,83 @@
-<div class="ui segment teacher_table">
-  <h1>Signed Up Teachers</h1>
-
-  <%= if message = get_flash(@conn, :success) do %>
-    <div class="ui positive message">
-      <i class="close icon"></i>
-      <%= message %>
+<div class="teacher_table">
+  <div class="login">
+    <div class="ui form">
+      <h1>Enter password to view the data</h1>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" />
+      </div>
+      <div class="field">
+        <button class="ui green button" id="loginButton">Login</button>
+        
+      </div>
     </div>
-  <%= end %>
+  </div>
+  <div class="table_view">
+    <h1>Signed Up Teachers</h1>
 
-  <%= if message = get_flash(@conn, :info) do %>
-    <div class="ui message">
-      <i class="close icon"></i>
-      <%= message %>
+    <%= if message = get_flash(@conn, :success) do %>
+      <div class="ui positive message">
+        <i class="close icon"></i>
+        <%= message %>
+      </div>
+    <%= end %>
+
+    <%= if message = get_flash(@conn, :info) do %>
+      <div class="ui message">
+        <i class="close icon"></i>
+        <%= message %>
+      </div>
+    <%= end %>
+
+    <div class="ui small buttons table_buttons">
+      <%= button "New teacher",
+          method: :get,
+          class: "green ui button",
+          to: teacher_path(@conn, :new) %>
+
+      <%= button "Edit subjects",
+          method: :get,
+          to: subject_path(@conn, :index),
+          class: "blue ui button" %>
+
+      <%= button "Download as spreadsheet",
+          method: :get,
+          class: "black ui button",
+          to: csv_path(@conn, :export) %>
     </div>
-  <%= end %>
 
-  <table class="ui celled striped tablet stackable table">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Email</th>
-        <th>School type</th>
-        <th>Subject</th>
-        <th>Additional contact</th>
-        <th>Confirmed?</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-  <%= for teacher <- @teachers do %>
-      <tr>
-        <td><%= teacher.title %></td>
-        <td><%= teacher.first_name %></td>
-        <td><%= teacher.last_name %></td>
-        <td><%= teacher.email %></td>
-        <td><%= String.capitalize teacher.school_type %></td>
-        <td><%= format_subject(teacher.subject) || "N/A" %></td>
-        <td><%= teacher.additional_contact || "N/A" %></td>
-        <td><%= confirm?(@conn, teacher) %></td>
-        <td><%= button "Delete",
-                  to: teacher_path(@conn, :delete, %{"id" => teacher.id}),
-                  method: :delete,
-                  class: "basic mini red ui button" %></td>
-      </tr>
-  <% end %>
-    </tbody>
-  </table>  
-  <%= link "New teacher",
-      to: teacher_path(@conn, :new) %>
-
-  &nbsp;&nbsp;&nbsp;&nbsp;
-
-  <%= link "Edit subjects",
-      to: subject_path(@conn, :index) %>
-
-  &nbsp;&nbsp;&nbsp;&nbsp;
-
-  <%= link "Download as spreadsheet",
-      to: csv_path(@conn, :export) %>
+    <table class="ui celled striped table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Email</th>
+          <th>School type</th>
+          <th>Subject</th>
+          <th>Additional contact</th>
+          <th>Confirmed?</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+    <%= for teacher <- @teachers do %>
+        <tr>
+          <td><%= teacher.title %></td>
+          <td><%= teacher.first_name %></td>
+          <td><%= teacher.last_name %></td>
+          <td><%= teacher.email %></td>
+          <td><%= String.capitalize teacher.school_type %></td>
+          <td><%= teacher.subject || "N/A" %></td>
+          <td><%= teacher.additional_contact || "N/A" %></td>
+          <td><%= confirm?(@conn, teacher) %></td>
+          <td><%= button "Delete",
+                    to: teacher_path(@conn, :delete, %{"id" => teacher.id}),
+                    method: :delete,
+                    class: "basic mini red ui button" %></td>
+        </tr>
+    <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

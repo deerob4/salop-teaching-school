@@ -46,3 +46,44 @@ html, body {
 #subject_field {
   display: none;
 }
+
+.table_buttons form input {
+  margin-right: 5px !important;
+}
+
+.table_view {
+  display: none;
+}
+
+.teacher_table {
+  width: 100%;
+  height: 100%;
+  padding: 35px;
+  background-color: #fff;
+}
+
+#loginButton {
+  margin-right: 5px;
+}
+
+#password {
+  width: 50%;
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+  .teacher_table {
+    width: 106%;    
+  }
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+  .teacher_table {
+    width: 145%;    
+  }
+}

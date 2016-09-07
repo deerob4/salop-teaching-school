@@ -17,7 +17,7 @@
         </div>
       <% end %>
     </div>
-
+    <br>
     <%= link "Return to table", to: teacher_path(@conn, :index) %>
   </div>
 </div>

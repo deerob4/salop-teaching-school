@@ -22,8 +22,8 @@ defmodule TeachingSchool.TeacherView do
   def format_subject(nil), do: nil
   def format_subject(subject) when is_bitstring(subject) do
     subject
-    |> String.replace("_", " ")
-    |> title_case
+    # |> String.replace("_", " ")
+    # |> title_case
   end
 
   defp title_case(string) do

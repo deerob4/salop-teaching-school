@@ -38,4 +38,27 @@ $('#teacher_school_type').on('change', function() {
     default:
       $subject.show();
   }
-})
+});
+// localStorage.clear()
+const verified = window.localStorage.getItem('verified');
+
+if (verified) {
+  showTable()
+}
+
+$('#loginButton').click(function() {
+  const password = 'trickydicky';
+  const userPassword = $('#password').val();
+
+  if (userPassword === password) {
+    showTable();
+    window.localStorage.setItem('verified', true);
+  } else {
+    alert('Incorrect password.');
+  }
+});
+
+function showTable() {
+  $('.login').hide();
+  $('.table_view').show();
+}
