@@ -8,10 +8,10 @@
       </div>
       <div class="field">
         <button class="ui green button" id="loginButton">Login</button>
-        
       </div>
     </div>
   </div>
+
   <div class="table_view">
     <h1>Signed Up Teachers</h1>
 
@@ -34,11 +34,6 @@
           method: :get,
           class: "green ui button",
           to: teacher_path(@conn, :new) %>
-
-      <%= button "Edit subjects",
-          method: :get,
-          to: subject_path(@conn, :index),
-          class: "blue ui button" %>
 
       <%= button "Download as spreadsheet",
           method: :get,
@@ -68,7 +63,7 @@
           <td><%= teacher.last_name %></td>
           <td><%= teacher.email %></td>
           <td><%= String.capitalize teacher.school_type %></td>
-          <td><%= teacher.subject || "N/A" %></td>
+          <td><%= title_case teacher.subject || "N/A" %></td>
           <td><%= teacher.additional_contact || "N/A" %></td>
           <td><%= confirm?(@conn, teacher) %></td>
           <td><%= button "Delete",

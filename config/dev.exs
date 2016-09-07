@@ -41,3 +41,5 @@ config :teaching_school, TeachingSchool.Repo,
   database: "teaching_school_dev",
   hostname: "localhost",
   pool_size: 10
+
+  [{TeachingSchool.Endpoint, [url: [host: "localhost"], secret_key_base: "rOQsqNsfHAKTodToBUJ2rguoMjpoR76/aq2632S8htOqqqoyv0sRkou0tbGO2ihr", render_errors: [view: TeachingSchool.ErrorView, accepts: ["html", "json"]], pubsub: [name: TeachingSchool.PubSub, adapter: Phoenix.PubSub.PG2], http: [port: 5000], debug_errors: true, code_reloader: true, dev?: true, check_origin: false, watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin", {:cd, "/home/dee/Programming/elixir/shropshire-teaching-school"}]], live_reload: [patterns: [~r/priv\/static\/.*(js|css|png|jpeg|jpg|gif|svg)$/, ~r/priv\/gettext\/.*(po)$/, ~r/web\/views\/.*(ex)$/, ~r/web\/templates\/.*(eex)$/]]]}, {TeachingSchool.Repo, [adapter: Ecto.Adapters.Postgres, username: "postgres", password: "postgres", database: "teaching_school_dev", hostname: "localhost", pool_size: 10]}, {:included_applications, []}, {:ecto_repos, [TeachingSchool.Repo]}]

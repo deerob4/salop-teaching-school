@@ -2,13 +2,25 @@ defmodule TeachingSchool.TeacherView do
   use TeachingSchool.Web, :view
   alias TeachingSchool.Teacher
 
-  @subject_file "priv/static/subjects.txt"
-  @subjects []
-
-  @subject_file
-  |> File.read!
-  |> String.split("\n", trim: true)
-  |> Enum.each(&(@subjects @subjects ++ [&1]))
+  @subjects [
+    "Art",
+    "Business Studies",
+    "Computer Science",
+    "DT",
+    "English",
+    "Food Technology",
+    "French",
+    "Geography",
+    "History",
+    "ICT",
+    "Maths",
+    "Music",
+    "PE",
+    "Psychology",
+    "Religious Studies",
+    "Science",
+    "Spanish"
+  ]
 
   @doc """
   A list of available subjects.
@@ -19,18 +31,19 @@ defmodule TeachingSchool.TeacherView do
     |> create_options
   end
 
-  defp title_case(string) do
-    string
-    |> String.split(" ")
-    |> Enum.map(&String.capitalize/1)
-    |> Enum.join(" ")
-  end
-
   @doc """
   A list of available school types.
   """
   def school_types do
     ["Primary", "Secondary", "Either"] |> create_options
+  end
+
+  def title_case("N/A" = s), do: s
+  def title_case(string) do
+    string
+    |> String.split(" ")
+    |> Enum.map(&String.capitalize/1)
+    |> Enum.join(" ")
   end
 
   @doc """
