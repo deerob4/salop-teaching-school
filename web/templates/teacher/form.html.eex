@@ -1,7 +1,6 @@
 <%= form_for @changeset, @action, [class: "ui form"], fn f -> %>
   <%= if @changeset.action do %>
     <div class="ui negative message">
-      <i class="close icon"></i>
       <div class="header">
         There were some errors with your entry
       </div>

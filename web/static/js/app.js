@@ -1,13 +1,5 @@
 $('.ui.dropdown').dropdown();
 
-$('.message .close')
-  .on('click', function() {
-    $(this)
-      .closest('.message')
-      .transition('fade')
-    ;
-  });
-
 $('.ui.form')
   .form({
     inline: true,
@@ -47,7 +39,7 @@ if (verified) {
 }
 
 $('#loginButton').click(function() {
-  const password = 'trickydicky';
+  const password = 'trickydolphin';
   const userPassword = $('#password').val();
 
   if (userPassword === password) {

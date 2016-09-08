@@ -17,14 +17,12 @@
 
     <%= if message = get_flash(@conn, :success) do %>
       <div class="ui positive message">
-        <i class="close icon"></i>
         <%= message %>
       </div>
     <%= end %>
 
     <%= if message = get_flash(@conn, :info) do %>
       <div class="ui message">
-        <i class="close icon"></i>
         <%= message %>
       </div>
     <%= end %>
