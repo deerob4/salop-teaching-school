@@ -3,8 +3,8 @@ defmodule TeachingSchool.Mixfile do
 
   def project do
     [app: :teaching_school,
-     version: "0.0.1",
-     elixir: "~> 1.2",
+     version: "1.0.0",
+     elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -19,7 +19,7 @@ defmodule TeachingSchool.Mixfile do
   def application do
     [mod: {TeachingSchool, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :faker, :csv, :mix]]
+                    :phoenix_ecto, :postgrex, :faker, :csv]]
   end
 
   # Specifies which paths to compile per environment.
