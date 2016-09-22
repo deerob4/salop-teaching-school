@@ -47,6 +47,14 @@ defmodule TeachingSchool.TeacherView do
   end
 
   @doc """
+  A list of available aware from types.
+  """
+  def aware_from_types do
+    ["School", "Flyer", "Newspaper",
+     "Radio", "Word of mouth", "Online"] |> create_options
+  end
+
+  @doc """
   Builds a list of two-item tuples, the first being
   the original `option`, the second being that option
   formatted for a database.

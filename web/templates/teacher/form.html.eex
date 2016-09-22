@@ -12,6 +12,7 @@
         <%= error_tag f, :school_type %>
         <%= error_tag f, :subject %>
         <%= error_tag f, :additional_contact %>
+        <%= error_tag f, :aware_other_explanation %>
       </ul>
     </div>
   <% end %>
@@ -21,7 +22,7 @@
       <%= @success_message %>
     </div>
   <%= end %>
-
+  
   <div class="required field">
     <%= label f, :title %>
     <%= select f, :title, ["Mr", "Mrs", "Miss", "Ms", "Dr"], class: "ui dropdown" %>
@@ -41,7 +42,7 @@
 
   <div class="two fields">
     <div class="required field">
-      <label for="teacher_email">Email address</label>
+      <%= label f, :additional_contact, "Email address" %>
       <%= email_input f, :email, placeholder: "johnsmith@gmail.com" %>
     </div>
 
@@ -59,6 +60,16 @@
   <div class="required field" id="subject_field">
     <%= label f, :subject %>
     <%= select f, :subject, subjects, class: "ui dropdown" %>
+  </div>
+
+  <div class="required field">
+    <%= label f, :aware_from, "Heard of Salop Teaching School via" %>
+    <%= select f, :aware_from, aware_from_types, class: "ui dropdown" %>
+  </div>
+
+  <div class="required field" id="online_explanation">
+    <%= label f, :aware_other_explanation, "How online?" %>
+    <%= text_input f, :aware_other_explanation, placeholder: "Friend" %>
   </div>
 
   <div class="field">

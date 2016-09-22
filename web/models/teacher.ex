@@ -11,6 +11,8 @@ defmodule TeachingSchool.Teacher do
     field :school_type, :string
     field :subject, :string
     field :additional_contact, :string
+    field :aware_from, :string
+    field :aware_other_explanation, :string
     field :confirmed, :boolean
 
     timestamps()
@@ -21,9 +23,10 @@ defmodule TeachingSchool.Teacher do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :first_name, :last_name, :email, :school_type, :additional_contact, :confirmed])
-    |> validate_required([:title, :first_name, :last_name, :email, :school_type])
+    |> cast(params, [:title, :first_name, :last_name, :email, :school_type, :additional_contact, :confirmed, :aware_from])
+    |> validate_required([:title, :first_name, :last_name, :email, :school_type, :aware_from])
     |> subject_required?(params)
+    |> aware_other_explanation_required?(params)
     |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email, message: "has already been registered")
   end
@@ -37,6 +40,18 @@ defmodule TeachingSchool.Teacher do
         changeset
         |> cast(params, [:subject])
         |> validate_required(:subject, message: "can't be blank if teaching secondary")
+    end
+  end
+
+  defp aware_other_explanation_required?(changeset, params) do
+    case get_field(changeset, :aware_from) do
+      "online" ->
+        changeset
+        |> cast(params, [:aware_other_explanation])
+        |> validate_required(:aware_other_explanation, message: "can't be blank if STA was found online")
+
+      _other ->
+        changeset
     end
   end
 

@@ -10,6 +10,7 @@ $('.ui.form')
       teacher_email: ['empty', 'email'],
       teacher_school_type: 'empty',
       teacher_subject: 'empty',
+      teacher_aware_from: 'empty',
     }
   });
 
@@ -31,7 +32,21 @@ $('#teacher_school_type').on('change', function() {
       $subject.show();
   }
 });
-// localStorage.clear()
+
+$('#teacher_aware_from').on('change', function() {
+  const selection = $(this).val();
+  const $online = $('#online_explanation');
+
+  switch(selection) {
+    case 'online':
+      $online.show();
+      break;
+
+    default:
+      $online.hide();
+  }
+});
+
 const verified = window.localStorage.getItem('verified');
 
 if (verified) {

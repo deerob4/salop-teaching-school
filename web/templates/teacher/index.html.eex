@@ -49,6 +49,8 @@
           <th>School type</th>
           <th>Subject</th>
           <th>Additional contact</th>
+          <th>Aware from</th>
+          <th>Online explanation</th>
           <th>Confirmed?</th>
           <th>Delete</th>
         </tr>
@@ -63,6 +65,8 @@
           <td><%= String.capitalize teacher.school_type %></td>
           <td><%= title_case teacher.subject || "N/A" %></td>
           <td><%= teacher.additional_contact || "N/A" %></td>
+          <td><%= teacher.aware_from || "N/A" %></td>
+          <td><%= teacher.aware_other_explanation || "N/A" %></td>
           <td><%= confirm?(@conn, teacher) %></td>
           <td><%= button "Delete",
                     to: teacher_path(@conn, :delete, %{"id" => teacher.id}),

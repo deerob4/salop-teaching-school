@@ -3,7 +3,7 @@ defmodule TeachingSchool.CsvController do
   alias TeachingSchool.{Repo, Teacher}
 
   @fields ~w(title first_name last_name email additional_contact
-             school_type subject confirmed)
+             school_type subject confirmed, aware_from, aware_other_explanation)
 
   def export(conn, _params) do
     conn
