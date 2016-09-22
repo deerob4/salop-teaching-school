@@ -3,23 +3,19 @@ defmodule TeachingSchool.TeacherView do
   alias TeachingSchool.Teacher
 
   @subjects [
-    "Art",
-    "Business Studies",
-    "Computer Science",
-    "DT",
+    "Art and Design",
+    "Biology",
+    "Chemistry",
+    "Computing",
+    "Design and Technology",
     "English",
-    "Food Technology",
-    "French",
     "Geography",
     "History",
-    "ICT",
-    "Maths",
+    "Mathematics",
+    "Modern Languages",
     "Music",
-    "PE",
-    "Psychology",
-    "Religious Studies",
-    "Science",
-    "Spanish"
+    "Physics",
+    "Religious Education",
   ]
 
   @doc """
