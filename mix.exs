@@ -19,7 +19,7 @@ defmodule TeachingSchool.Mixfile do
   def application do
     [mod: {TeachingSchool, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :faker, :csv]]
+                    :phoenix_ecto, :postgrex, :faker, :csv, :mix]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,7 @@ defmodule TeachingSchool.Mixfile do
      {:gettext, "~> 0.11"},
      {:csv, "~> 1.4.2"},
      {:faker, "~> 0.7"},
-     {:distillery, ">= 0.0.0"},
+     {:exrm, "~> 1.0.8"},
      {:cowboy, "~> 1.0"}]
   end
 

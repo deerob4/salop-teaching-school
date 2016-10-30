@@ -4,7 +4,7 @@ exports.config = {
     javascripts: {
       joinTo: "js/app.js",
       order: {
-        before: "web/static/vendor/jquery-3.1.0.js"
+        before: ["web/static/vendor/jquery-3.1.0.js"]
       }
     },
     stylesheets: {
